@@ -1,0 +1,28 @@
+{
+    "name": "nerzen-star/equation",
+    "description": "Example library for lesson subject \\\"TRPO\\\"",
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Nerzen-star",
+            "email": "exploitatis@gmail.com"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/rok9ru/trpo-core"
+        }
+    ],
+    "require": {
+        "php": "^7.3",
+        "rok9ru/trpo-core": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "yakushev\\": "yakushev" 
+        }
+    }
+}
