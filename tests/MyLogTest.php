@@ -3,23 +3,12 @@
 use PHPUnit\Framework\TestCase;
 use yakushev\MyLog;
 
-class _ML extends MyLog{
-    public static function getLog()
-    {
-        return MyLog::Instance()->log;
-    }
-
-    public static function clearArray() {
-        MyLog::Instance()->log = array();
-    }
-}
-
 class MyLogTest extends TestCase {
 
     public static $log=[];
 
     public static function setUpBeforeClass(): void {
-        _ML::clearArray();
+        MyLog::clearArray();
         $dir = 'log\\';
         if (!file_exists($dir)) {
             mkdir($dir, 0755);
@@ -32,9 +21,9 @@ class MyLogTest extends TestCase {
      * @return void
      */
     public function testLog(string $str): void {
-        _ML::log($str);
+        MyLog::log($str);
         self::$log[] = $str;
-        $this->assertSame(self::$log,_ML::getLog());
+        $this->assertSame(self::$log, MyLog::getLog());
     }
 
     public function providerLog() {
@@ -44,8 +33,7 @@ class MyLogTest extends TestCase {
         );
     }
 
-    protected function _scandir($dir, $exp, $how='name', $desc=0)
-    {
+    protected function _scandir($dir, $exp, $how='name', $desc=0) {
         $r = array();
         $dh = @opendir($dir);
         if ($dh){
@@ -74,7 +62,7 @@ class MyLogTest extends TestCase {
             $_tmpLogTxt.="{$v}\r\n";
         }
         $this->expectOutputString($_tmpLogTxt);
-        _ML::write();
+        MyLog::write();
         $this->assertDirectoryExists('log');
         $_tmpLogFile=$this->_scandir(
             'log\\',

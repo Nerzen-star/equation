@@ -21,4 +21,12 @@ class MyLog extends LogAbstract implements LogInterface {
     public static function write(): void {
         MyLog::Instance()->_write();
     }
+
+    public static function clearArray() {
+        MyLog::Instance()->log = array();
+    }
+
+    public static function getLog() {
+        return MyLog::Instance()->log;
+    }
 }
